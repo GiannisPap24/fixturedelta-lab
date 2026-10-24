@@ -8,7 +8,8 @@ passed. FixtureDelta Lab checks saved responses for exact text, required/forbidd
 content and JSON field types, then reports what regressed or improved. It uses the
 Python standard library and has **no runtime dependencies or model calls**.
 
-**Status:** sanitized local public-release candidate; GitHub publication awaits owner approval.
+**Status:** published publicly on GitHub on **2026-10-24** at
+[GiannisPap24/fixturedelta-lab](https://github.com/GiannisPap24/fixturedelta-lab).
 Verified on Windows with Python **3.12.10 and 3.14.4**. Python >=3.12 is declared;
 other operating systems and interpreter versions have not been validated here.
 
@@ -187,5 +188,6 @@ The product was formerly developed as TrustBench AI. Historical milestone/audit 
 retain their original names and results; private machine locations and development
 commit identifiers are omitted. This repository starts from one sanitized release
 snapshot; the private development Git history is not included.
-The [release checklist](docs/release-readiness.md) records owner approval and the
-publication handoff. No GitHub repository or release tag has been created by this work.
+The [release checklist](docs/release-readiness.md) documents the preparation and
+publication procedure. The initial public snapshot was published with owner approval
+on **2026-10-24**; the release verification documents retain their pre-publication context.
