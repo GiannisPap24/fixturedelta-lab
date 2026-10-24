@@ -1,0 +1,66 @@
+[build-system]
+requires = ["uv_build==0.13.4"]
+build-backend = "uv_build"
+
+[project]
+name = "fixturedelta-lab"
+version = "0.1.0"
+description = "Offline-first recorded-output evaluation contracts and deterministic evaluators"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+dependencies = []
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+    "Private :: Do Not Upload",
+]
+
+[project.scripts]
+fixturedelta = "fixturedelta_lab.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "ruff>=0.11,<1", "coverage>=7.6,<8"]
+
+[tool.uv]
+required-version = ">=0.13.4,<0.14"
+
+[tool.uv.build-backend]
+module-name = "fixturedelta_lab"
+source-include = ["tests/**", "docs/**", "scripts/**", ".vscode/**", "AGENTS.md", "uv.lock", ".python-version"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-config --strict-markers --import-mode=importlib"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.coverage.run]
+branch = true
+source = [
+    "fixturedelta_lab.metrics",
+    "fixturedelta_lab.runner",
+    "fixturedelta_lab.provenance",
+    "fixturedelta_lab.datasets",
+    "fixturedelta_lab.comparison",
+    "fixturedelta_lab.comparison_types",
+    "fixturedelta_lab.gates",
+    "fixturedelta_lab.gate_types",
+    "fixturedelta_lab.policies",
+    "fixturedelta_lab.reporting",
+    "fixturedelta_lab.cli",
+]
+data_file = "artifacts/.coverage-evaluation"
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.coverage.json]
+output = "artifacts/coverage-evaluation.json"

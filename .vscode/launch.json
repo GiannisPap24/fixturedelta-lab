@@ -1,0 +1,55 @@
+{
+  "version": "0.2.0",
+  "inputs": [
+    {
+      "id": "cliDebugDirectory",
+      "type": "promptString",
+      "description": "New report directory (must not exist; use a fresh name each run)",
+      "default": "artifacts/cli-debug"
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Python: Debug evaluator tests",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "module": "pytest",
+      "args": ["tests/test_metrics.py", "-q"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {"UV_OFFLINE": "1", "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"}
+    },
+    {
+      "name": "Python: Debug current test file",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "module": "pytest",
+      "args": ["${file}", "-q"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {"UV_OFFLINE": "1", "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"}
+    },
+    {
+      "name": "Python: Debug synthetic CLI (expected exit 1)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "module": "fixturedelta_lab",
+      "args": [
+        "check",
+        "--dataset", "tests/fixtures/golden-v1.0.0.json",
+        "--baseline", "tests/fixtures/baseline-v1.json",
+        "--candidate", "tests/fixtures/candidate-v2.json",
+        "--report-dir", "${input:cliDebugDirectory}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {"UV_OFFLINE": "1", "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"}
+    }
+  ]
+}

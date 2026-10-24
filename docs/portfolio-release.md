@@ -1,0 +1,303 @@
+# FixtureDelta Lab — local portfolio release verification
+
+> Historical private-development release record. Public preparation supersedes its
+> Git-history and publication handoff; see [public release verification](public-release.md).
+> Machine locations and private commit identifiers have been omitted.
+
+Date: **2026-10-24**. Result: **local release preparation complete**, with no remaining
+confirmed P0/P1 issue in the documented bounded Windows MVP scope. Public GitHub
+publication requires separate owner approval. This record supersedes historical
+milestone commands and the pre-rebranding audit's pending naming/licence decisions.
+
+## A. Final naming and compatibility
+
+| Surface | Previous working identity | Final identity |
+| --- | --- | --- |
+| Product | TrustBench AI | FixtureDelta Lab |
+| Intended GitHub repository | No remote | GiannisPap24/fixturedelta-lab (not created) |
+| Distribution | trustbench-ai | fixturedelta-lab |
+| Import / module execution | trustbench_ai | fixturedelta_lab |
+| Console command | trustbench | fixturedelta |
+| Source directory | src/trustbench_ai | src/fixturedelta_lab |
+
+Package version remains **0.1.0**, the initial unpublished portfolio version. The
+existing Windows checkout directory stays in place. There is one implementation;
+no deprecated import/command shim or duplicate package is shipped. The editable
+and installed-wheel environments were checked for absence of the old import/console.
+Callers must update imports/commands to the names above.
+
+All 18 Python application modules were compared against the audit checkpoint using
+normalized ASTs: after allowing import names, command/help text, product title and
+package docstrings, the syntax trees match. Evaluation algorithms, contracts, rule
+arithmetic, classification and filesystem publication behavior are unchanged.
+Original fixture bytes were not modified. The checked PowerShell tool wrapper is
+release tooling, not a new evaluator or application feature.
+
+## B. Exact file inventory
+
+Relative to the audit checkpoint: **36 modified files, 19 package-file moves and
+3 new files**. Small renamed files may appear as delete/add in Git's similarity view.
+
+Created:
+
+- `LICENSE`
+- `scripts/uv.ps1`
+- `docs/portfolio-release.md`
+
+Modified:
+
+- `.gitignore`
+- `.vscode/launch.json`
+- `.vscode/tasks.json`
+- `AGENTS.md`
+- `README.md`
+- `docs/architecture.md`
+- `docs/demo.md`
+- `docs/evaluation-contract.md`
+- `docs/final-mvp-audit.md`
+- `docs/gate-contract.md`
+- `docs/milestone-1a.md`
+- `docs/milestone-1b.md`
+- `docs/milestone-1c.md`
+- `docs/milestone-2a.md`
+- `docs/milestone-2b.md`
+- `docs/milestone-2c.md`
+- `docs/milestone-3a.md`
+- `docs/naming.md`
+- `docs/release-readiness.md`
+- `docs/report-contract.md`
+- `docs/roadmap.md`
+- `docs/vscode.md`
+- `pyproject.toml`
+- `scripts/demo.ps1`
+- `scripts/demo.py`
+- `tests/test_cli.py`
+- `tests/test_comparison.py`
+- `tests/test_datasets.py`
+- `tests/test_demo.py`
+- `tests/test_domain.py`
+- `tests/test_gates.py`
+- `tests/test_metrics.py`
+- `tests/test_policies.py`
+- `tests/test_reporting.py`
+- `tests/test_runner.py`
+- `uv.lock`
+
+Renamed (imports/docstrings updated where applicable; no algorithm changes):
+
+| From | To |
+| --- | --- |
+| `src/trustbench_ai/__init__.py` | `src/fixturedelta_lab/__init__.py` |
+| `src/trustbench_ai/__main__.py` | `src/fixturedelta_lab/__main__.py` |
+| `src/trustbench_ai/cli.py` | `src/fixturedelta_lab/cli.py` |
+| `src/trustbench_ai/comparison.py` | `src/fixturedelta_lab/comparison.py` |
+| `src/trustbench_ai/comparison_types.py` | `src/fixturedelta_lab/comparison_types.py` |
+| `src/trustbench_ai/datasets.py` | `src/fixturedelta_lab/datasets.py` |
+| `src/trustbench_ai/domain.py` | `src/fixturedelta_lab/domain.py` |
+| `src/trustbench_ai/gate_types.py` | `src/fixturedelta_lab/gate_types.py` |
+| `src/trustbench_ai/gates.py` | `src/fixturedelta_lab/gates.py` |
+| `src/trustbench_ai/metrics/__init__.py` | `src/fixturedelta_lab/metrics/__init__.py` |
+| `src/trustbench_ai/metrics/_common.py` | `src/fixturedelta_lab/metrics/_common.py` |
+| `src/trustbench_ai/metrics/content.py` | `src/fixturedelta_lab/metrics/content.py` |
+| `src/trustbench_ai/metrics/exact.py` | `src/fixturedelta_lab/metrics/exact.py` |
+| `src/trustbench_ai/metrics/json_structure.py` | `src/fixturedelta_lab/metrics/json_structure.py` |
+| `src/trustbench_ai/policies.py` | `src/fixturedelta_lab/policies.py` |
+| `src/trustbench_ai/provenance.py` | `src/fixturedelta_lab/provenance.py` |
+| `src/trustbench_ai/py.typed` | `src/fixturedelta_lab/py.typed` |
+| `src/trustbench_ai/reporting.py` | `src/fixturedelta_lab/reporting.py` |
+| `src/trustbench_ai/runner.py` | `src/fixturedelta_lab/runner.py` |
+
+The seven milestone files and prior final audit only gain a historical-record banner;
+their original evidence is preserved. Current naming, README, contracts and editor/demo
+guides use the new commands. `.vscode/settings.json`, extension recommendations and
+all four fixture files remain unchanged. `uv.lock` was regenerated by uv: only the
+local distribution identity/order changed; third-party versions/hashes are unchanged.
+
+Ignored local evidence includes `.tools/uv.exe` with its original tool licences,
+`artifacts/release-verification/`, verification helpers, environments, coverage and
+build outputs. These are not staged or distributed as project source.
+
+## C. MIT licence and attribution
+
+The root [LICENSE](../LICENSE) contains the official MIT grant/disclaimer with exactly
+**Copyright (c) 2026 GiannisPap24**. `pyproject.toml` declares `license = "MIT"` and
+`license-files = ["LICENSE"]`. The wheel contains `License-Expression: MIT`, a
+`License-File: LICENSE` metadata entry and the byte-identical full licence under its
+`.dist-info/licenses/` directory; the sdist also includes the full licence.
+[Official MIT text](https://opensource.org/license/mit).
+
+The owner's licence authorization applies to the repository and its handwritten
+synthetic fixtures. No third-party/private dataset was imported, and no model-measured
+responses are claimed. Development/build dependencies retain their existing licences;
+see the [inventory](release-readiness.md#licence-options-and-dependencies). The local uv
+copy retains its upstream MIT and Apache texts and is ignored. There are zero runtime
+dependencies. The private-upload classifier remains because PyPI upload is not authorized.
+
+## D. Actual test results
+
+| Environment | Test mode | Result |
+| --- | --- | --- |
+| Python 3.12.10 | Complete locked offline suite; separate targeted coverage run | **632 passed** |
+| Python 3.14.4 | Rebuilt wheel in `.venv-package`, `-I`, cwd outside source root, repository tests/config | **632 passed** |
+| Fresh Python 3.14.4 environment | New environment, offline wheel install with no dependencies, site-packages origin, console/module checks | **Pass** |
+
+The prior **624-test** audit baseline was rerun successfully before its checkpoint.
+Eight added cases check rejection of unsupported/malformed uv versions and transparent
+argument/exit forwarding. The existing multiple-uv test now traverses the checked
+wrapper. The report test asserts the new product heading. No test was weakened or
+fixture silently altered. Windows launcher tests ran on both audited interpreters;
+they explicitly skip on other platforms or without Windows PowerShell.
+
+## E. Quality, lock and packaging
+
+- Ruff 0.17.2 lint and formatting: **pass**.
+- Targeted coverage: **949/949 statements and 268/268 branches**, zero missing or
+  partially covered branches in the 15 configured modules. This is not whole-repository
+  coverage; the domain module, entry point and scripts are outside that percentage.
+- uv 0.13.4: offline lock check and locked sync pass; nine project/development packages
+  resolve. Dependency compatibility checks pass for development, installed-wheel and
+  fresh environments. Third-party locked versions did not change.
+- uv_build 0.13.4 produces `fixturedelta_lab-0.1.0.tar.gz` and
+  `fixturedelta_lab-0.1.0-py3-none-any.whl`. Both licence inclusion and metadata were
+  inspected. No old package, local tool, generated report or virtual environment is
+  bundled. The wheel has no `Requires-Dist` runtime dependency entries.
+- A genuinely new isolated Python 3.14 environment installed the wheel offline.
+  Imports resolve to that environment's site-packages with no source-path injection;
+  the old namespace is absent. Test sources/fixtures are read from the checkout,
+  independently of the installed application.
+
+A fresh environment on the current host is not a clean-machine or multi-OS bootstrap
+claim. A new host still needs Python, a patched uv and a dependency cache/download.
+
+## F. CLI, reports and deterministic demo
+
+Both `fixturedelta` and `python -m fixturedelta_lab` work after installation. The real
+demo ran on Python 3.12 and the Python 3.14 installed wheel, each with seven CLI
+invocations: fail/pass through both entry points, malformed input, incompatible input
+and occupied output directory. The fresh wheel independently exercised both entry
+points, help and exits 0/1/2/3 from outside the source root.
+
+| Scenario | Checks / cases | Regressions | Improvements | Candidate passes | Exit |
+| --- | --- | --- | --- | --- | --- |
+| Baseline vs candidate, strict policy | 8 / 6 | 2 | 1 | 6/8 | 1 |
+| Baseline vs baseline, strict policy | 8 / 6 | 0 | 0 | 7/8 | 0 |
+| Malformed or incompatible input | No valid report | — | — | — | 2 |
+| Existing output directory | No overwrite | — | — | — | 3 |
+
+The passing strict policy permits the one unchanged failed check. It is a no-regression
+decision, not a claim that every output is correct. Valid results, error semantics and
+input bytes are unchanged.
+
+**Exact rebranding effect:** `report.json` is byte-identical to the audited version;
+no JSON field or value changed. Markdown differs only in its first line:
+
+```text
+old: # TrustBench synthetic evaluation
+new: # FixtureDelta Lab synthetic evaluation
+```
+
+Removing that intentional title substitution makes each Markdown file byte-identical
+to its old counterpart. The new JSON/Markdown bytes also match across both Python
+versions and entry points. The title is outside the canonical JSON report digest.
+The five legacy format identifiers remain deliberately unchanged:
+
+- `trustbench-run-v1`
+- `trustbench-comparison-v1`
+- `trustbench-gate-policy-v1`
+- `trustbench-gate-v1`
+- `trustbench-report-v1`
+
+They are stable wire-format domain separators, not stale executable/import branding.
+Contract, evaluator and suite versions are unchanged. Report fingerprints remain:
+
+```text
+fail: 08b2702208de2ac7caf0f38152939f4a7f907113f9e7444aa4954582c156b10e
+pass: 5d69da236056a383b4f6e1c0906cac9c6d794e0851470bb091f8cef717f8a638
+```
+
+## G. VS Code and patched tool selection
+
+All saved task commands and three debug targets were executed successfully using
+normal inherited PATH, with **no audit PATH prepend**. Tasks/demo use `scripts/uv.ps1`:
+it prefers ignored `.tools/uv.exe` and otherwise validates the first PATH application.
+Versions outside >=0.13.4,<0.14 or malformed versions fail before the requested command.
+The existing global uv 0.13.3 stays untouched and is not silently used. Direct global
+uv project commands also fail the project's minimum-version requirement.
+
+The installed debug adapter stopped at `src/fixturedelta_lab/cli.py:79`, returned the
+stack, continued and exited 1 with the expected report pair. The adapter used
+stdio/internal console; task-menu clicks, prompt UI and integrated-terminal F5 routing
+were not automated. Interpreter/Ruff settings and extension recommendations are
+unchanged. No extensions, global settings, authentication or live Codex inference changed.
+
+## H. Security and history review
+
+Before the release checkpoint, all **seven reachable commits / 120 distinct historical
+file blobs** and the complete intended current tree were reviewed for credential
+patterns, private-key markers, unintended paths and generated artifacts. Matches were
+only the deliberate synthetic rejection cases in `tests/test_reporting.py`. All commit
+author/committer identities use the approved GitHub noreply address. The final release
+commit records the reviewed tree with that same identity; no history rewrite occurred.
+
+The original private record retained local paths in the 1A/1B evidence and browser
+skill instruction. This public snapshot replaces those locations with portable
+descriptions; deliberate rejection-test paths remain synthetic. Generated output, `.tools`, environments and caches
+remain excluded. No real/private evaluation data or actual credential was identified.
+Pattern scanning is not proof that all secrets or vulnerabilities are absent.
+
+The audit's linear JSON scan, depth/digit limits, strict validation, Markdown escaping,
+exclusive output creation and cleanup remain intact. Application AST comparison and
+tests support that conclusion. Recorded AI outputs remain data: no eval, shell execution,
+networking or telemetry was introduced in application code. Tooling invokes only the
+explicit uv/CLI commands. The earlier dependency-advisory check and its scope are in
+[the historical audit](final-mvp-audit.md); no dependency version was changed here.
+
+The known limits remain bounded local inputs, trusted filesystem parents, whole-file
+memory use, unsigned consistency hashes and no crash-durability guarantee. No P0/P1
+issue was reproduced after these corrections, within that scope.
+
+## I. Local Git checkpoints
+
+1. Verified prior 3A checkpoint: `private-checkpoint`.
+2. Audit checkpoint created before rebranding:
+   **`private-checkpoint`**,
+   `fix: resolve final MVP audit findings`; exactly 13 reviewed files and a clean tree.
+3. This release tree is committed only after exact staged-inventory, licence, privacy,
+   quality and package checks, with subject
+   **`chore: prepare FixtureDelta Lab portfolio release`**. Its hash is verified after
+   creation and supplied in the completion message; a commit cannot embed its own hash.
+
+Branch remains `main`. Approved identity: `GiannisPap24` with the existing GitHub
+noreply email. No host-side checkpoint script is needed: local Git writes work.
+No remote, push, tag or publication is authorized/performed.
+
+## J. GitHub presentation
+
+Proposed repository: **GiannisPap24/fixturedelta-lab**.
+
+Description: **Offline Python regression testing for recorded AI outputs, with deterministic
+evaluators, quality gates and reproducible baseline/candidate reports.**
+
+Topics: `python`, `ai-evaluation`, `regression-testing`, `quality-gates`,
+`reproducibility`, `cli`, `pytest`, `synthetic-data`.
+
+README coverage includes the problem, evaluators, comparison/gate semantics, actual
+synthetic demo, CLI exits, reports, compatibility, architecture, verification, MIT and
+limitations. It makes no live-model benchmarking, semantic correctness, comprehensive
+hallucination detection or production-monitoring claims.
+
+## K. Remaining blockers and limits
+
+No remaining confirmed technical P0/P1 blocker for this local portfolio scope.
+**Public GitHub creation/push awaits explicit owner approval.** At that time, confirm
+repository availability/access and re-review the exact public tree/history. No trademark
+or package-name reservation is implied. Broader CI/platform testing, input quotas and
+larger synthetic suites are optional future work. No new product features were added.
+
+## L. Publication handoff
+
+Follow [release readiness](release-readiness.md#publication-procedure--execute-only-after-owner-approval)
+after approval: create the empty owner-selected repository, add its verified remote,
+push the reviewed main branch, set description/topics, and inspect README/licence/source
+rendering. Do not initialize conflicting remote files. Tags, deployment and PyPI upload
+remain separate actions. **Stop at this local release checkpoint.**

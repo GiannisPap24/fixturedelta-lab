@@ -1,0 +1,157 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "demoDirectory",
+      "type": "promptString",
+      "description": "New demo directory under artifacts (must not exist)",
+      "default": "artifacts/demo"
+    },
+    {
+      "id": "cliReportDirectory",
+      "type": "promptString",
+      "description": "New report directory (must not exist; use a fresh name each run)",
+      "default": "artifacts/cli-demo"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "FixtureDelta Lab: verified end-to-end demo (expected exit 0)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "scripts/demo.ps1",
+        "-OutputDirectory",
+        "${input:demoDirectory}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "FixtureDelta Lab: synthetic CLI demo (expected exit 1)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "scripts/uv.ps1",
+        "run",
+        "--locked",
+        "--offline",
+        "fixturedelta",
+        "check",
+        "--dataset",
+        "tests/fixtures/golden-v1.0.0.json",
+        "--baseline",
+        "tests/fixtures/baseline-v1.json",
+        "--candidate",
+        "tests/fixtures/candidate-v2.json",
+        "--report-dir",
+        "${input:cliReportDirectory}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Tests: offline pytest",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "scripts/uv.ps1",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Quality: Ruff lint",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "scripts/uv.ps1",
+        "run",
+        "--locked",
+        "--offline",
+        "ruff",
+        "check",
+        "."
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Quality: Ruff format check",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "scripts/uv.ps1",
+        "run",
+        "--locked",
+        "--offline",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Quality: Ruff checks",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Quality: Ruff lint",
+        "Quality: Ruff format check"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Dependencies: verify lock offline",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "scripts/uv.ps1",
+        "lock",
+        "--check",
+        "--offline"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

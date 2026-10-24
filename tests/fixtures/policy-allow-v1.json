@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "policy_id": "synthetic-allow",
+  "policy_version": "1.0.0",
+  "max_regressions": 2,
+  "max_candidate_failures": 2,
+  "min_candidate_pass_rate": {"numerator": 3, "denominator": 4}
+}

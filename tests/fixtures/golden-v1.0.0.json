@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "dataset_id": "synthetic-foundation",
+  "dataset_version": "1.0.0",
+  "origin": "synthetic",
+  "cases": [
+    {
+      "case_id": "en-label-001",
+      "category": "exact-output",
+      "language": "en",
+      "prompt": "Return only the label READY.",
+      "expectation": {"kind": "exact_match", "expected": "READY"}
+    },
+    {
+      "case_id": "el-label-001",
+      "category": "exact-output",
+      "language": "el",
+      "prompt": "Επέστρεψε μόνο τη λέξη Έτοιμο.",
+      "expectation": {"kind": "exact_match", "expected": "Έτοιμο"}
+    },
+    {
+      "case_id": "en-rules-001",
+      "category": "content-rules",
+      "language": "en",
+      "prompt": "For this fictional exercise, include the phrase blue triangle and omit red square.",
+      "expectation": {
+        "kind": "content_rules",
+        "required": ["blue triangle"],
+        "forbidden": ["red square"]
+      }
+    },
+    {
+      "case_id": "el-rules-001",
+      "category": "content-rules",
+      "language": "el",
+      "prompt": "Για αυτή τη φανταστική άσκηση, γράψε πράσινος κύκλος και παράλειψε μαύρο τρίγωνο.",
+      "expectation": {
+        "kind": "content_rules",
+        "required": ["πράσινος κύκλος"],
+        "forbidden": ["μαύρο τρίγωνο"]
+      }
+    },
+    {
+      "case_id": "en-json-001",
+      "category": "json-structure",
+      "language": "en",
+      "prompt": "Return a JSON object with label as a string and count as an integer, without other fields.",
+      "expectation": {
+        "kind": "json_object",
+        "required_fields": {"label": "string", "count": "integer"},
+        "allow_extra_fields": false
+      }
+    },
+    {
+      "case_id": "el-json-001",
+      "category": "json-structure",
+      "language": "el",
+      "prompt": "Επέστρεψε αντικείμενο JSON με ετικέτα ως κείμενο και ενεργό ως boolean, χωρίς άλλα πεδία.",
+      "expectation": {
+        "kind": "json_object",
+        "required_fields": {"ετικέτα": "string", "ενεργό": "boolean"},
+        "allow_extra_fields": false
+      }
+    }
+  ]
+}
